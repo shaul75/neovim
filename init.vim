@@ -13,19 +13,18 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'ray-x/lsp_signature.nvim'
     " lsp
     Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/nvim-lsp-installer' " easily install language servers.
+    Plug 'williamboman/mason.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    " Plug 'glepnir/lspsaga.nvim'
     Plug 'folke/trouble.nvim'
-    Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-    Plug 'jose-elias-alvarez/null-ls.nvim'
     " A completion engine plugin for neovim written in Lua
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/vim-vsnip'
     Plug 'onsails/lspkind-nvim'
     Plug 'olimorris/onedarkpro.nvim'
 
@@ -33,9 +32,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'mhinz/vim-startify'
     " Auto-Resizing Focused Splits/Windows for Neovim
     Plug 'beauwilliams/focus.nvim'
-
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'kyazdani42/nvim-web-devicons'  " needed for galaxyline icons
 
     Plug 'rafi/awesome-vim-colorschemes'
     " tabs/buffers
@@ -56,15 +53,13 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tpope/vim-fugitive' " popular git plugin
     Plug 'tpope/vim-commentary'
     Plug 'tanvirtin/vgit.nvim'
-    " Plug 'onsails/lspkind-nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'pearofducks/ansible-vim'
 call plug#end()
 
 colorscheme onedarkpro
-
-set completeopt=menu,menuone,preview
 
 " basic settings
 syntax on
@@ -94,6 +89,7 @@ lua <<EOF
   require('vgit').setup()
   require("cmp_config")
   require("lsp_config")
+  require("mason").setup()
   require("telescope_config")
   require('lualine_config')
   require("focus").setup {}
@@ -136,5 +132,3 @@ command! -bang -nargs=? -complete=dir Files
 
 
 exec 'source ~/.config/nvim/keymap.vim'
-
-
